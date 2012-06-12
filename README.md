@@ -8,12 +8,11 @@ pop-zap is an auto zapping TV tool with iRemocon.
 ruby -Ilib bin/app.rb
 ```
 
-## configure
-
-`conf` directory includes all your settings.
+## configuration
+`conf` directory includes all your configuration.
 
 ### tv.conf
-You can set your channel remocon code by iRemocon to `conf/tv.conf`.
+Set your channel remocon code by iRemocon.
 
 ### i-remocon.conf
-And you can set yuor iRemocon network environment to `conf/i-remocon.conf`.
+Set yuor iRemocon network environment.
