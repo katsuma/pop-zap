@@ -7,7 +7,7 @@ module PopZap
     def initialize(conf)
       @conf = conf
       @tv_conf = YAML.parse_file("#{conf}/tv.conf").transform
-      @iremocon_conf = YAML.parse_file("#{conf}/iremocon.conf").transform
+      @iremocon_conf = YAML.parse_file("#{conf}/i-remocon.conf").transform
     end
 
     def start
