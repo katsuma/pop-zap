@@ -1,0 +1,14 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    growl (1.0.3)
+    nokogiri (1.5.0)
+    slop (2.1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  growl
+  nokogiri
+  slop
