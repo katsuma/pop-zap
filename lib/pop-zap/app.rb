@@ -14,14 +14,19 @@ module PopZap
       prev_channel = ''
       loop do
         popular_channel = popular_channels.first
-        unless prev_channel == popular_channel
-          Growl.notify "#{popular_channel[:program]} - #{popular_channel[:channel]}"
+        unless prev_channel == popular_channel[:channel]
+          info "#{popular_channel[:program]} - #{popular_channel[:channel]}"
           show popular_channel[:channel]
           prev_channel = popular_channel
         end
 
         sleep 300
       end
+    end
+
+    def info(message)
+      Growl.notify message
+      puts message
     end
 
     def popular_channels
