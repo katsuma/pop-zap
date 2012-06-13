@@ -2,10 +2,18 @@
 
 pop-zap is an auto zapping TV tool with iRemocon.
 
+## install
+
+```sh
+git clone git://github.com/katsuma/pop-zap.git
+cd pop-zap
+bundle install
+```
+
 ## usage
 
-```ruby
-ruby -Ilib bin/app.rb
+```sh
+bin/pop-zap
 ```
 
 ## configuration
