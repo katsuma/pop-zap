@@ -17,7 +17,7 @@ module PopZap
         unless prev_channel == popular_channel[:channel]
           info "#{popular_channel[:program]} - #{popular_channel[:channel]}"
           show popular_channel[:channel]
-          prev_channel = popular_channel
+          prev_channel = popular_channel[:channel]
         end
 
         sleep 300
