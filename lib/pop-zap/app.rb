@@ -3,6 +3,7 @@ module PopZap
   class App
     LIVE_URL = 'http://tv2ch.nukos.net/tvres.html'
     IGNORE_KEYWORDS = ['BS実況', 'スカパー', '番組']
+    POPULAR_RATE = 1.1
 
     def initialize(conf)
       @conf = conf
@@ -14,7 +15,9 @@ module PopZap
       prev_channel = ''
       loop do
         popular_channel = popular_channels.first
-        unless prev_channel == popular_channel[:channel]
+        candidate_channel = popular_channels.size > 1 ? popular_channels[1] : nil
+
+        if more_popular?(popular_channel, candidate_channel) && prev_channel != popular_channel[:channel]
           info "#{popular_channel[:program]} - #{popular_channel[:channel]}"
           show popular_channel[:channel]
           prev_channel = popular_channel[:channel]
@@ -22,6 +25,11 @@ module PopZap
 
         sleep 300
       end
+    end
+
+    def more_popular?(channel_a, channel_b)
+      raise if channel_a.nil? || channel_b.nil?
+      (channel_a[:rate].to_f / channel_b[:rate].to_f) > POPULAR_RATE
     end
 
     def info(message)
