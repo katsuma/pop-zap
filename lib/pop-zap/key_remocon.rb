@@ -8,7 +8,7 @@ module PopZap
     end
 
     def banner
-      puts '[Pop-zap] Remocon mode:'
+      puts '[Pop-zap] Key Remocon mode:'
       puts ''
       puts '     Number            Change your channel'
       puts '     KeyUp/KeyDown     Change your volume'

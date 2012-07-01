@@ -9,7 +9,7 @@ require 'growl'
 require 'opengl'
 
 opts = Slop.parse do
-  banner "ruby -Ilib bin/app.rb [options]"
+  banner "bin/pop-zap [options]"
   on :c, '--conf', 'Set configuration path', :argument => :optional
   on :r, '--remocon', 'Run as Key Remocon mode'
   on :h, '--help', 'Print this message'
