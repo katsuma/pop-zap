@@ -2,8 +2,9 @@ GEM
   remote: https://rubygems.org/
   specs:
     growl (1.0.3)
-    nokogiri (1.5.0)
-    slop (2.1.0)
+    nokogiri (1.5.5)
+    ruby-opengl2 (0.60.3)
+    slop (3.3.2)
 
 PLATFORMS
   ruby
@@ -11,4 +12,5 @@ PLATFORMS
 DEPENDENCIES
   growl
   nokogiri
+  ruby-opengl2
   slop

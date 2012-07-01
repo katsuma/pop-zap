@@ -1,1 +1,1 @@
-ruby -Ilib bin/app.rb
+ruby -Ilib bin/app.rb $*

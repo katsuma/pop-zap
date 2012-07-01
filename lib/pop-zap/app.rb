@@ -6,8 +6,11 @@ module PopZap
     POPULAR_RATE = 1.05
 
     def initialize(conf)
-      @conf = conf
-      @tv_conf = YAML.parse_file("#{conf}/tv.conf").transform
+      @channel_conf = { }
+      tv_conf = YAML.parse_file("#{conf}/tv.conf").transform
+      tv_conf[:channels].each do |name, setting|
+        @channel_conf[name] = setting[:remocon]
+      end
       @iremocon_conf = YAML.parse_file("#{conf}/i-remocon.conf").transform
     end
 
@@ -60,7 +63,7 @@ module PopZap
     end
 
     def show(channel)
-      channel_id = @tv_conf[channel]
+      channel_id = @channel_conf[channel]
       raise if channel_id.nil?
       sock = TCPSocket.new @iremocon_conf['ip'], @iremocon_conf['port']
 
