@@ -3,7 +3,7 @@ module PopZap
   class App
     LIVE_URL = 'http://tv2ch.nukos.net/tvres.html'
     IGNORE_KEYWORDS = ['BS実況', 'スカパー', '番組']
-    POPULAR_RATE = 1.1
+    POPULAR_RATE = 1.05
 
     def initialize(conf)
       @conf = conf
