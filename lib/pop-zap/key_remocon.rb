@@ -5,11 +5,10 @@ module PopZap
       load_conf(conf)
       init_socket
       init_window
-      banner
     end
 
     def banner
-      puts 'KeyRemocon Usage:'
+      puts '[Pop-zap] Remocon mode:'
       puts ''
       puts '     Number            Change your channel'
       puts '     KeyUp/KeyDown     Change your volume'
@@ -47,6 +46,7 @@ module PopZap
     end
 
     def start
+      banner
       GLUT.MainLoop
     end
 
