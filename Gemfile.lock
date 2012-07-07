@@ -3,6 +3,7 @@ GEM
   specs:
     growl (1.0.3)
     nokogiri (1.5.5)
+    rb-appscript (0.6.1)
     ruby-opengl2 (0.60.3)
     slop (3.3.2)
 
@@ -12,5 +13,6 @@ PLATFORMS
 DEPENDENCIES
   growl
   nokogiri
+  rb-appscript
   ruby-opengl2
   slop

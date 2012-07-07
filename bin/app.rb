@@ -7,11 +7,18 @@ require 'nokogiri'
 require 'pop-zap'
 require 'growl'
 require 'opengl'
+require 'appscript'
 
 opts = Slop.parse do
-  banner "bin/pop-zap [options]"
+  banner_text = []
+  banner_text << "pop-zap (ver #{PopZap::VERSION})"
+  banner_text << "bin/pop-zap [options]"
+
+  banner banner_text.join("\n\n")
+
   on :c, '--conf', 'Set configuration path', :argument => :optional
   on :r, '--remocon', 'Run as Key Remocon mode'
+  on :v, '--voice', 'Speak program information'
   on :h, '--help', 'Print this message'
 end
 
@@ -22,9 +29,10 @@ end
 
 conf = opts.conf? ? opts[:conf] : 'conf'
 mode = opts.remocon? ? 'remocon' : 'app'
+voice = opts.voice?
 
 if mode == 'app'
-  pop_zap = PopZap::App.new(conf)
+  pop_zap = PopZap::App.new(conf, :voice => voice)
 else
   pop_zap = PopZap::KeyRemocon.new(conf)
 end

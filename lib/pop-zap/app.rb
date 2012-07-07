@@ -4,14 +4,37 @@ module PopZap
     LIVE_URL = 'http://tv2ch.nukos.net/tvres.html'
     IGNORE_KEYWORDS = ['BS実況', 'スカパー', '番組']
     POPULAR_RATE = 1.05
+    MESSAGE_DIR = File.join(Dir.home, '.pop-zap')
 
-    def initialize(conf)
+    def initialize(conf, options = {})
       @channel_conf = { }
       tv_conf = YAML.parse_file("#{conf}/tv.conf").transform
       tv_conf[:channels].each do |name, setting|
         @channel_conf[name] = setting[:remocon]
       end
       @iremocon_conf = YAML.parse_file("#{conf}/i-remocon.conf").transform
+
+      @voice = options.has_key?(:voice) ? options[:voice] : false
+      generate_voice_file(conf)
+    end
+
+    def generate_voice_file(conf)
+
+      return if File.exist?(MESSAGE_DIR) && File.exist?(File.join(MESSAGE_DIR, 'voice.scpt'))
+
+      scpts = []
+      open("#{conf}/voice.scpt", 'r') do |scpt|
+        scpt.each do |line|
+          line = line.gsub('$voice_file_path', MacTypes::FileURL.path(File.expand_path("#{MESSAGE_DIR}/channel.aiff")).hfs_path)
+          scpts << line
+        end
+      end
+
+      FileUtils.mkdir(MESSAGE_DIR) unless File.exist? MESSAGE_DIR
+
+      open(File.join(MESSAGE_DIR, 'voice.scpt'), 'w') do |scpt|
+        scpt.write scpts.join
+      end
     end
 
     def start
@@ -36,8 +59,16 @@ module PopZap
     end
 
     def info(message)
+      if @voice
+        say message
+      end
       Growl.notify message
       puts message
+    end
+
+    def say(message)
+      `say -v Kyoko #{message}を映します -o #{MESSAGE_DIR}/channel.aiff`
+      `osascript #{MESSAGE_DIR}/voice.scpt`
     end
 
     def popular_channels
