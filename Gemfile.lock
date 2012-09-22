@@ -2,10 +2,12 @@ GEM
   remote: https://rubygems.org/
   specs:
     growl (1.0.3)
+    mkrf (0.2.3)
     nokogiri (1.5.5)
     rb-appscript (0.6.1)
-    ruby-opengl2 (0.60.3)
-    slop (3.3.2)
+    ruby-opengl2 (0.60.5)
+      mkrf (>= 0.2.3)
+    slop (3.3.3)
 
 PLATFORMS
   ruby
